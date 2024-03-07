@@ -57,8 +57,11 @@ public class Q3_Burn_Binary_Tree {
 
         Map<TreeNode, Integer> burningTime = new HashMap<>();
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        burningTime.put(root, 0);
+        TreeNode start = findNodeWithValue(root, startNode);
+
+        // Initialize the queue with the start node and its adjacent nodes
+        queue.add(start);
+        burningTime.put(start, 0);
 
         int maxTime = 0;
 
@@ -82,13 +85,7 @@ public class Q3_Burn_Binary_Tree {
             }
         }
 
-        TreeNode startTreeNode = findNodeWithValue(root, startNode);
-
-        if (startTreeNode != null) {
-            return burningTime.get(startTreeNode);
-        } else {
-            return -1; // Start node not found in the tree
-        }
+        return maxTime;
     }
 
     // Method to find the parent of a given node in the binary tree
